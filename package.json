@@ -1,0 +1,52 @@
+{
+  "name": "tlsft-api",
+  "version": "0.1.0",
+  "description": "Standard API boilerplate for TLSFT.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "mocha",
+    "mongo": "docker run --name mongo-dev -p 27017:27017 -d mongo:3.4.23",
+    "mongo-start": "docker start mongo-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bitmage/tlsft-api.git"
+  },
+  "keywords": [
+    "torchlight",
+    "fastify",
+    "mongo",
+    "mongoose"
+  ],
+  "author": "b@tlsft.com",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/bitmage/tlsft-api/issues"
+  },
+  "private": true,
+  "homepage": "https://github.com/bitmage/tlsft-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fastify": "^2.10.0",
+    "fastify-autocrud": "0.0.4",
+    "fastify-mongoose": "^0.2.3",
+    "klaw-sync": "^6.0.0",
+    "make-promises-safe": "^5.1.0",
+    "mocha": "^6.2.2",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.8"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write 'index.js' 'src/**/*.js'",
+      "eslint --ext .js --fix src",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
