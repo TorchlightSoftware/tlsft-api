@@ -48,5 +48,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "devDependencies": {
+    "axios": "^0.19.0",
+    "chai": "^4.2.0"
   }
 }

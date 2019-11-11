@@ -6,9 +6,7 @@ require('dotenv').config()
 require('make-promises-safe')
 
 // Require the framework and instantiate it
-const fastify = require('fastify')({
-  logger: true,
-})
+const fastify = require('fastify')({})
 
 // add a relative path helper called 'root'
 const {join} = require('path')
@@ -43,7 +41,7 @@ fastify.decorate('start', async () => {
 
   fastify.status = 'starting'
   return new Promise((resolve, reject) =>
-    fastify.listen(3000, function(err, address) {
+    fastify.listen(process.env.PORT, function(err, address) {
       if (err) return reject(err)
       fastify.log.info(`server listening on ${address}`)
       fastify.status = 'started'
@@ -59,3 +57,5 @@ if (require.main === module) {
     process.exit(1)
   })
 }
+
+module.exports = fastify
