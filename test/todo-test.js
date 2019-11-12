@@ -37,10 +37,13 @@ const newTodo = {
   assigned: 'Brandon',
   message: 'get milk'
 }
+let newTodoId
 it('should create a todo', async () => {
   const response = await apiClient.post('/todos', newTodo)
   //console.log(response.data)
   expect(response.status).to.equal(201)
+  expect(response.data.id, 'id').to.exist
+  newTodoId = response.data.id
 })
 
 // When I send a get request to /todos
@@ -50,6 +53,28 @@ it('should list newly created todo', async () => {
 
   // Then I should see the item I just created
   expect(response.data).to.deep.match([newTodo])
+})
+
+// When I request the specific Todo
+it('should get newly created todo', async () => {
+  const response = await apiClient.get(`/todos/${newTodoId}`)
+  expect(response.status).to.equal(200)
+
+  // Then I should see the item I just created
+  expect(response.data).to.deep.match(newTodo)
+})
+
+// When I update a Todo
+it('should get newly created todo', async () => {
+  let response = await apiClient.patch(`/todos/${newTodoId}`,
+    {assigned: 'Tommy'}
+  )
+  expect(response.status).to.equal(200)
+
+  // Then I should see the item I just updated
+  response = await apiClient.get(`/todos/${newTodoId}`)
+  expect(response.status).to.equal(200)
+  expect(response.data.assigned).to.equal('Tommy')
 })
 
 after('close api', async() => api.close())

@@ -2,12 +2,13 @@
 
 module.exports = async function routes(fastify, options) {
 
-  // Declare a route
+  // List todos
   fastify.get('/todos', async () => {
     const {Todo} = fastify.mongo.db.models
     return Todo.find()
   })
 
+  // Create a todo
   fastify.post('/todos', async (req, reply) => {
     // save to MongoDB
     const {Todo} = fastify.mongo.db.models
@@ -15,5 +16,10 @@ module.exports = async function routes(fastify, options) {
     reply.code(201).send()
   })
 
+  // Get a single todo
+
+  // Update a todo
+
+  // Delete a todo
 }
 
