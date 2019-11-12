@@ -3,9 +3,9 @@
 ### Running
 
 ```bash
-mocha // run all the tests
-mocha --grep "some test name" // searches through the "describe" and "it" text and runs tests that match
-mocha test/foo.js // run a specific test file
+mocha                          # run all the tests
+mocha --grep "some test name"  # searches through the "describe" and "it" text and runs tests that match
+mocha test/foo.js              # run a specific test file
 ```
 
 ### When to write tests
