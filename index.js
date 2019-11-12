@@ -13,6 +13,9 @@ const {join} = require('path')
 fastify.decorate('root', (...path) => join(__dirname, ...path))
 
 // helper to load all files in a directory/subdirectories
+// we use sync because this is called during boot process,
+// but NEVER use sync for something that is going to be called
+// upon web requests
 const klawSync = require('klaw-sync')
 const forEachFileUnder = (path, fn) => {
   klawSync(fastify.root(path), {
@@ -21,12 +24,13 @@ const forEachFileUnder = (path, fn) => {
     traverseAll: true
   }).map(({path}) => path).map(fn)
 }
+fastify.decorate('forEachFileUnder', forEachFileUnder)
 
 // load plugins
-forEachFileUnder('plugins', file => fastify.register(require(file)))
+forEachFileUnder('plugins', file => require(file)(fastify))
 
 // load routes
-forEachFileUnder('routes', file => fastify.register(require(file)))
+forEachFileUnder('routes', file => require(file)(fastify))
 
 // helper to instantiate singleton instance of app
 fastify.decorate('status', 'not started')
