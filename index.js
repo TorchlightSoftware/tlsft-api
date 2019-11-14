@@ -46,6 +46,7 @@ fastify.decorate('start', async () => {
   fastify.status = 'starting'
   return new Promise((resolve, reject) =>
     fastify.listen(process.env.PORT, function(err, address) {
+      console.log(`running port ${process.env.PORT}`)
       if (err) return reject(err)
       fastify.log.info(`server listening on ${address}`)
       fastify.status = 'started'

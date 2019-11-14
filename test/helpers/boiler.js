@@ -42,7 +42,7 @@ after('close server', async () => server.close())
 async function deleteAllData() {
   const models = server.mongo.db.models
   const modelNames = Object.keys(models)
-  console.log('deleting data')
+  // console.log('deleting data')
   return Promise.all(
     modelNames.map(name => models[name].deleteMany())
   )
