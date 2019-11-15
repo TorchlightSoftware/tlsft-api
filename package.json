@@ -40,8 +40,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write 'index.js' 'src/**/*.js'",
-      "eslint --ext .js --fix src",
+      "prettier --write '**/*.js'",
+      "eslint --ext .js --fix .",
       "git add"
     ]
   },
@@ -55,6 +55,15 @@
     "chai": "^4.2.0",
     "chai-deep-match": "^1.2.1",
     "chai-samsam": "0.0.2",
-    "factory-girl": "^5.0.4"
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "factory-girl": "^5.0.4",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1"
   }
 }

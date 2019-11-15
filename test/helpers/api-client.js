@@ -1,7 +1,7 @@
 const _ = require('lodash')
 
 const apiClient = require('axios').create({
-  baseURL: `http://localhost:${process.env.PORT}`
+  baseURL: `http://localhost:${process.env.PORT}`,
 })
 
 apiClient.interceptors.response.use(

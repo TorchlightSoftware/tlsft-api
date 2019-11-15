@@ -5,10 +5,9 @@ const mongoose = require('mongoose')
 
 module.exports = async function routes(fastify) {
   fastify
-    .register(
-      require('fastify-mongoose'), {
-        uri: process.env.MONGO_URI
-      })
+    .register(require('fastify-mongoose'), {
+      uri: process.env.MONGO_URI,
+    })
     .after(err => {
       // just blow up if mongoose failed to load
       if (err) throw err

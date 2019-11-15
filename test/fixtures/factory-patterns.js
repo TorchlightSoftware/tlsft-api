@@ -1,6 +1,6 @@
 const {factory} = require('factory-girl')
 
-module.exports = (models) => {
+module.exports = models => {
   const {Todo} = models
 
   factory.define('todo', Todo, {

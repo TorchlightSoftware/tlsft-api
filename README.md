@@ -8,3 +8,4 @@ Using:
 * [mongoose](https://mongoosejs.com/) - ORM for Mongo
 * [mocha](https://mochajs.org/) - testing framework
 * [factory-girl](https://github.com/simonexmachina/factory-girl) - generate data for testing
+

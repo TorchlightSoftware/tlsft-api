@@ -43,9 +43,7 @@ async function deleteAllData() {
   const models = server.mongo.db.models
   const modelNames = Object.keys(models)
   // console.log('deleting data')
-  return Promise.all(
-    modelNames.map(name => models[name].deleteMany())
-  )
+  return Promise.all(modelNames.map(name => models[name].deleteMany()))
 }
 
 // Add features here if you wish!

@@ -21,8 +21,10 @@ const forEachFileUnder = (path, fn) => {
   klawSync(fastify.root(path), {
     nodir: true,
     filter: ({path}) => path.endsWith('.js'),
-    traverseAll: true
-  }).map(({path}) => path).map(fn)
+    traverseAll: true,
+  })
+    .map(({path}) => path)
+    .map(fn)
 }
 fastify.decorate('forEachFileUnder', forEachFileUnder)
 
