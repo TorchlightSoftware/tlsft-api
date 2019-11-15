@@ -18,7 +18,6 @@ boiler('todos', ['clearDataBeforeAndAfter'], function () {
     const response = await this.api.get('/todos')
     //console.log(response.data)
     expect(response.status).to.equal(200)
-
     // Then I should receive an array
     expect(response.data).to.eql([])
   })
@@ -26,10 +25,12 @@ boiler('todos', ['clearDataBeforeAndAfter'], function () {
   let newTodoId
   it('should create a todo', async function () {
     const response = await this.api.post('/todos', newTodo)
-    //console.log(response.data)
     expect(response.status).to.equal(201)
     expect(response.data._id, '_id').to.exist
+<<<<<<< HEAD
     newTodoId = response.data._id
+=======
+>>>>>>> 8a6f2b5cdce7ff1a8202e884ae28687c04cc9aa7
   })
 
   // When I send a get request to /todos
