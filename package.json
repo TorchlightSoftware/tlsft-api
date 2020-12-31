@@ -28,7 +28,7 @@
   "homepage": "https://github.com/bitmage/tlsft-api#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "fastify": "^2.10.0",
+    "fastify": "^2.15.1",
     "fastify-autocrud": "0.0.4",
     "fastify-mongoose": "^0.2.3",
     "klaw-sync": "^6.0.0",
