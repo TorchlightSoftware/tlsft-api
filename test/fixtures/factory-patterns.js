@@ -1,4 +1,4 @@
-const {factory} = require('factory-girl')
+const {factory} = require('@dreamlines/factory-girl')
 
 module.exports = models => {
   const {Todo} = models

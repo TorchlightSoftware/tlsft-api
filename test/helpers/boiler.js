@@ -24,7 +24,7 @@ torch.setDepth(5)
 // hooks that run surrounding *all* tests
 before('start server', async () => server.start())
 before('initialize factory', function() {
-  const {models} = server.mongo.db
+  const {models} = server.db
   this.models = models
   this.Factory = require('../fixtures/factory-patterns')(models)
 })
@@ -40,7 +40,7 @@ after('close server', async () => server.close())
 
 // helper to delete data for all models
 async function deleteAllData() {
-  const models = server.mongo.db.models
+  const models = server.db.models
   const modelNames = Object.keys(models)
   // console.log('deleting data')
   return Promise.all(modelNames.map(name => models[name].deleteMany()))

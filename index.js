@@ -6,7 +6,9 @@ require('dotenv').config()
 require('make-promises-safe')
 
 // Require the framework and instantiate it
-const fastify = require('fastify')({})
+const fastify = require('fastify')({
+  //logger: true,
+})
 
 // add a relative path helper called 'root'
 const {join} = require('path')
@@ -56,6 +58,14 @@ fastify.decorate('start', async () => {
     })
   )
 })
+
+if (process.env.NODE_ENV !== 'production') {
+  fastify.addHook('onError', (request, reply, error, done) => {
+    const torch = require('torch')
+    torch.red(error)
+    done()
+  })
+}
 
 // start the server if `$ node server.js`
 if (require.main === module) {
