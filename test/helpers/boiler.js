@@ -24,10 +24,18 @@ torch.setDepth(5)
 // hooks that run surrounding *all* tests
 before('start server', async () => server.start())
 before('initialize factory', function() {
+  initMongoFactory()
+  initRoachFactory()
+})
+function initMongoFactory() {
   const {models} = server.db
   this.models = models
-  this.Factory = require('../fixtures/factory-patterns')(models)
-})
+  this.Factory = require('../fixtures/mongo-patterns')(models)
+}
+function initRoachFactory() {
+  this.roachmodels = server.roachmodels
+  this.RoachFactory = require('../fixtures/roach-patterns')(this.roachmodels)
+}
 before('attach helpers', function() {
   this.api = api
 })
@@ -39,7 +47,7 @@ after('close server', async () => server.close())
 //after('kill the process', () => setTimeout(process.exit, 10))
 
 // helper to delete data for all models
-async function deleteAllData() {
+async function deleteMongoData() {
   const models = server.db.models
   const modelNames = Object.keys(models)
   // console.log('deleting data')
@@ -49,12 +57,12 @@ async function deleteAllData() {
 // Add features here if you wish!
 const features = {
   clearDataBetweenTests() {
-    before('clear', deleteAllData)
-    afterEach('clear', deleteAllData)
+    before('clear', deleteMongoData)
+    afterEach('clear', deleteMongoData)
   },
   clearDataBeforeAndAfter() {
-    before('clear', deleteAllData)
-    after('clear', deleteAllData)
+    before('clear', deleteMongoData)
+    after('clear', deleteMongoData)
   },
   login() {
     // how should we log in to your app?
