@@ -10,6 +10,9 @@ const fastify = require('fastify')({
   //logger: true,
 })
 
+const torch = require('torch')
+torch.setDepth(2)
+
 // add a relative path helper called 'root'
 const {join} = require('path')
 fastify.decorate('root', (...path) => join(__dirname, ...path))
@@ -20,7 +23,7 @@ fastify.decorate('root', (...path) => join(__dirname, ...path))
 // upon web requests
 const klawSync = require('klaw-sync')
 const forEachFileUnder = (path, fn) => {
-  klawSync(fastify.root(path), {
+  return klawSync(fastify.root(path), {
     nodir: true,
     filter: ({path}) => path.endsWith('.js'),
     traverseAll: true,
@@ -61,7 +64,6 @@ fastify.decorate('start', async () => {
 
 if (process.env.NODE_ENV !== 'production') {
   fastify.addHook('onError', (request, reply, error, done) => {
-    const torch = require('torch')
     torch.red(error)
     done()
   })

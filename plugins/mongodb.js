@@ -21,7 +21,7 @@ module.exports = async function routes(fastify) {
       if (err) throw err
 
       // load all our schemas
-      fastify.forEachFileUnder('schemas', (filename) => {
+      fastify.forEachFileUnder('schemas/mongo', (filename) => {
         const db = fastify.mongoose.instance
         fastify.decorate('db', db)
         const schemaName = basename(filename, '.js')
