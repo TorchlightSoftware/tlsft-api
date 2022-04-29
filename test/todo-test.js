@@ -47,7 +47,7 @@ boiler('todos', ['clearDataBeforeAndAfter'], function() {
   })
 
   // When I update a Todo
-  it('should get newly created todo', async function() {
+  it('should get updated todo', async function() {
     let response = await this.api.patch(`/todos/${newTodoId}`, {assigned: 'Tommy'})
     expect(response.status).to.equal(200)
 

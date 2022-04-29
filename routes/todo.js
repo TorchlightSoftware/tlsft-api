@@ -15,9 +15,10 @@ module.exports = async function routes(fastify, options) {
     reply.code(201).send(createdTodo)
   })
 
-  fastify.get('/todos/:id', async () => {
+  fastify.get('/todos/:id', async (req) => {
+    const {id} = req.params
     const {Todo} = fastify.db.models
-    return Todo.findOne()
+    return Todo.findById(id)
   })
 
   fastify.patch('/todos/:id', async (req, reply) => {

@@ -16,8 +16,9 @@ module.exports = async function routes(fastify, options) {
 
   // Get a location by id
   fastify.get('/locations/:id', async (req, reply) => {
+    const {id} = req.params
     const {Location} = fastify.roachmodels
-    return Location.findOne()
+    return Location.findOne({where: {id}})
   })
 
   // Update a location by id

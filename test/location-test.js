@@ -43,6 +43,7 @@ boiler('locations', ['clearDataBeforeAndAfter'], function() {
   it('should list newly created location', async function() {
     const response = await this.api.get('/locations')
     expect(response.status).to.equal(200)
+    expect(response.data.length).to.equal(1)
 
     // Then I should see the item I just created
     expect(response.data).to.deep.match([newLocation])
@@ -58,7 +59,7 @@ boiler('locations', ['clearDataBeforeAndAfter'], function() {
   })
 
   // When I update a Location
-  it('should get newly created location', async function() {
+  it('should get updated location', async function() {
     let response = await this.api.patch(`/locations/${newLocationId}`, {geo: updateGeo})
     expect(response.status).to.equal(200)
 

@@ -35,7 +35,7 @@ module.exports = async function routes(fastify) {
         models[schemaName] = Model
 
         // ALTER SQL TABLE to match schema
-        return Model.sync({force: true})
+        return Model.sync()
       }))
 
       fastify.decorate('roachmodels', models)
