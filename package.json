@@ -29,7 +29,7 @@
   "dependencies": {
     "@dreamlines/factory-girl": "^6.0.1",
     "dotenv": "^16.0.0",
-    "fastify": "^3.28.0",
+    "fastify": "^3.29.4",
     "fastify-autocrud": "0.0.4",
     "fastify-mongoose-driver": "^3.2.0",
     "klaw-sync": "^6.0.0",
